@@ -735,7 +735,7 @@ public class BuyingTourTest {
     }
 
     @Test
-    @DisplayName("54) PayCard Negative Test HolderField Two Symbols")
+    @DisplayName("544) PayCard Negative Test HolderField Two Symbols")
     void shouldFailureBuyByInvalidHolderFieldTwoSymbolsPayCard() {
         tourPage.completePayFrom(DataHelper.getApprovedNumber(), DataHelper.getMonth(0), DataHelper.getYear(0), DataHelper.getChoiceSymbolHolder("??"), DataHelper.getCVC());
         tourPage.continueClick();
@@ -813,7 +813,7 @@ public class BuyingTourTest {
     }
 
     @Test
-    @DisplayName("59) PayCard Negative Test HolderField Start And Finish Spacebars")
+    @DisplayName("599) PayCard Negative Test HolderField Start And Finish Spacebars")
     void shouldFailureBuyByInvalidHolderFieldStartAndFinishSpacebarsPayCard() {
         tourPage.completePayFrom(DataHelper.getApprovedNumber(), DataHelper.getMonth(0), DataHelper.getYear(0), DataHelper.getChoiceSymbolHolder("  ??????   ????  "), DataHelper.getCVC());
         tourPage.continueClick();
