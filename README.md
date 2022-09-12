@@ -32,5 +32,5 @@
 - [1) Дипломное задание](https://github.com/netology-code/qa-diploma/blob/master/README.md)
 - [2) План автоматизации](https://github.com/manny1892/QADiplomWork/blob/master/Plan.md)
 - [3) Отчет по итогам тестрования](https://github.com/manny1892/QADiplomWork/blob/master/TestReport.md)
-- [2) План автоматизации](https://github.com/manny1892/QADiplomWork/blob/master/Plan.md)
+- [4) Отчет о проведенной автоматизации](https://github.com/manny1892/QADiplomWork/blob/master/Summary.md)
 
