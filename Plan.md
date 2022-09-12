@@ -181,3 +181,9 @@
 1) Создание и калибровка автотестов закончится 11.09.2022
 2) Создание баг-репортов и отчёта по результатам прогона тестов закончится 15.09.2022
 3) Отчёт по результатам автоматизации: 16.09.2022
+
+## Ссылки на документацию:
+- [1) Дипломное задание](https://github.com/netology-code/qa-diploma/blob/master/README.md)
+- [2) План автоматизации](https://github.com/manny1892/QADiplomWork/blob/master/Plan.md)
+- [3) Отчет по итогам тестрования](https://github.com/manny1892/QADiplomWork/blob/master/TestReport.md)
+- [2) Отчет о проведенной автоматизации](https://github.com/manny1892/QADiplomWork/blob/master/Summary.md)
