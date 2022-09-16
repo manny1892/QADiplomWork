@@ -12,8 +12,8 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class TourPage {
 
-    private final SelenideElement payButton = $x("//*[@id='root']/div/button[1]");
-    private final SelenideElement creditButton = $x("//*[@id='root']/div/button[2]");
+    HomePage homePage = new HomePage();
+
     private final SelenideElement continueButton = $x("//*[@id='root']/div/form/fieldset/div[4]/button");
     private final SelenideElement titleCard = $x("//*[@id='root']/div/h3");
 
@@ -39,14 +39,8 @@ public class TourPage {
     private final SelenideElement CVCFieldError = $x("//*[@id=\"root\"]/div/form/fieldset/div[3]/span/span[2]/span/span/span[3]");
 
 
-
-
-
-
-
-
     public void completePayFrom(String number, String month, String year, String holder, String cvc) {
-        payButton.click();
+        homePage.clickPayButton();
         titleCard.shouldBe(Condition.text("Оплата по карте"));
         cardNumber.setValue(number);
         cardMonth.setValue(month);
@@ -57,17 +51,17 @@ public class TourPage {
     }
 
     public ArrayList<String> getFrom() {
-       ArrayList<String> list = new ArrayList<>();
-       list.add(cardNumber.getValue());
-       list.add(cardMonth.getValue());
-       list.add(cardYear.getValue());
-       list.add(cardHolder.getValue());
-       list.add(cardCVC.getValue());
+        ArrayList<String> list = new ArrayList<>();
+        list.add(cardNumber.getValue());
+        list.add(cardMonth.getValue());
+        list.add(cardYear.getValue());
+        list.add(cardHolder.getValue());
+        list.add(cardCVC.getValue());
         return list;
     }
 
     public void completeCreditFrom(String number, String month, String year, String holder, String cvc) {
-        creditButton.click();
+        homePage.clickCreditButton();
         titleCard.shouldBe(Condition.text("Кредит по данным карты"));
         cardNumber.setValue(number);
         cardMonth.setValue(month);
@@ -76,119 +70,117 @@ public class TourPage {
         cardCVC.setValue(cvc);
 
     }
-    public void clickCreditButton(){
-        creditButton.click();
-    }
 
-    public void clickPayButton(){
-        payButton.click();
-    }
 
-    public void continueClick(){
+    public void continueClick() {
         continueButton.click();
     }
 
-    public void acceptAssertion(){
+    public void acceptAssertion() {
         notificationTitleAccept.shouldBe(Condition.text("Успешно"), Duration.ofSeconds(15)).shouldBe(Condition.visible);
         notificationContentAccept.shouldBe(Condition.text("Операция одобрена Банком."), Duration.ofSeconds(15)).shouldBe(Condition.visible);
     }
 
-    public void denialAssertion(){
+    public void denialAssertion() {
         notificationTitleDenial.shouldBe(Condition.text("Ошибка"), Duration.ofSeconds(15)).shouldBe(Condition.visible);
         notificationContentDenial.shouldBe(Condition.text("Ошибка! Банк отказал в проведении операции."), Duration.ofSeconds(15)).shouldBe(Condition.visible);
     }
 
-    public void numberFieldFormatError(){
+    public void numberFieldFormatError() {
         numberFieldError.shouldBe(Condition.text("Неверный формат"), Condition.visible);
     }
-    public void monthFieldFormatError(){
+
+    public void monthFieldFormatError() {
         monthFieldError.shouldBe(Condition.text("Неверный формат"), Condition.visible);
     }
-    public void monthFieldPeriodError(){
+
+    public void monthFieldPeriodError() {
         monthFieldError.shouldBe(Condition.text("Неверно указан срок действия карты"), Condition.visible);
     }
-    public void yearFieldFormatError(){
+
+    public void yearFieldFormatError() {
         yearFieldError.shouldBe(Condition.text("Неверный формат"), Condition.visible);
     }
 
-    public void yearFieldMinusPeriodError(){
+    public void yearFieldMinusPeriodError() {
         yearFieldError.shouldBe(Condition.text("Истёк срок действия карты"), Condition.visible);
     }
 
-    public void yearFieldPlusPeriodError(){
+    public void yearFieldPlusPeriodError() {
         yearFieldError.shouldBe(Condition.text("Неверно указан срок действия карты"), Condition.visible);
     }
-    public void holderFieldEmptyError(){
+
+    public void holderFieldEmptyError() {
         holderFieldError.shouldBe(Condition.text("Поле обязательно для заполнения"), Condition.visible);
     }
 
-    public void holderFieldFormatError(){
+    public void holderFieldFormatError() {
         holderFieldError.shouldBe(Condition.text("Неверный формат"), Condition.visible);
     }
 
-    public void CVCFieldFormatError(){
+    public void CVCFieldFormatError() {
         CVCFieldError.shouldBe(Condition.text("Неверный формат"), Condition.visible);
     }
 
-    public void payApprovedStatusAssertion(){
+    public void payApprovedStatusAssertion() {
 
         String statusExpected = "APPROVED";
         String statusActual = DBHelper.getPaymentStatusDB();
-        Assertions.assertEquals(statusExpected,statusActual);
+        Assertions.assertEquals(statusExpected, statusActual);
     }
 
-    public void payDeclinedStatusAssertion(){
+    public void payDeclinedStatusAssertion() {
         String statusExpected = "DECLINED";
         String statusActual = DBHelper.getPaymentStatusDB();
-        Assertions.assertEquals(statusExpected,statusActual);
+        Assertions.assertEquals(statusExpected, statusActual);
     }
 
-    public void payAcceptCountAssertion(){
+    public void payAcceptCountAssertion() {
         long countExpected = 1;
         long countActual = DBHelper.getPaymentCount();
-        Assertions.assertEquals(countExpected,countActual);
+        Assertions.assertEquals(countExpected, countActual);
     }
 
-    public void payDenialCountAssertion(){
+    public void payDenialCountAssertion() {
         long countExpected = 0;
         long countActual = DBHelper.getPaymentCount();
-        Assertions.assertEquals(countExpected,countActual);
+        Assertions.assertEquals(countExpected, countActual);
     }
 
-    public void creditApprovedStatusAssertion(){
+    public void creditApprovedStatusAssertion() {
         String statusExpected = "APPROVED";
         String statusActual = DBHelper.getCreditStatusDB();
-        Assertions.assertEquals(statusExpected,statusActual);
+        Assertions.assertEquals(statusExpected, statusActual);
     }
 
-    public void creditDeclinedStatusAssertion(){
+    public void creditDeclinedStatusAssertion() {
         String statusExpected = "DECLINED";
         String statusActual = DBHelper.getCreditStatusDB();
-        Assertions.assertEquals(statusExpected,statusActual);
+        Assertions.assertEquals(statusExpected, statusActual);
     }
 
-    public void creditAcceptCountAssertion(){
+    public void creditAcceptCountAssertion() {
         long countExpected = 1;
         long countActual = DBHelper.getCreditCount();
-        Assertions.assertEquals(countExpected,countActual);
+        Assertions.assertEquals(countExpected, countActual);
     }
 
-    public void creditDenialCountAssertion(){
+    public void creditDenialCountAssertion() {
         long countExpected = 0;
         long countActual = DBHelper.getCreditCount();
-        Assertions.assertEquals(countExpected,countActual);
+        Assertions.assertEquals(countExpected, countActual);
     }
 
-    public void orderAcceptCountAssertion(){
+    public void orderAcceptCountAssertion() {
         long countExpected = 1;
         long countActual = DBHelper.getOrderCount();
-        Assertions.assertEquals(countExpected,countActual);
+        Assertions.assertEquals(countExpected, countActual);
     }
 
-    public void orderDenialCountAssertion(){
+    public void orderDenialCountAssertion() {
         long countExpected = 0;
         long countActual = DBHelper.getOrderCount();
-        Assertions.assertEquals(countExpected,countActual);
+        Assertions.assertEquals(countExpected, countActual);
     }
 
 }

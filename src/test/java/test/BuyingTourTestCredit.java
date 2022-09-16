@@ -5,6 +5,7 @@ import data.DBHelper;
 import data.DataHelper;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.*;
+import pages.HomePage;
 import pages.TourPage;
 
 import java.util.ArrayList;
@@ -14,6 +15,8 @@ import static com.codeborne.selenide.Selenide.*;
 public class BuyingTourTestCredit {
 
     TourPage tourPage = new TourPage();
+    HomePage homePage = new HomePage();
+
 
     @BeforeEach
     void setup() {
@@ -618,7 +621,7 @@ public class BuyingTourTestCredit {
     void shouldSuccessfulChangeOnPayCardStayCompleted() {
         tourPage.completeCreditFrom(DataHelper.getApprovedNumber(), DataHelper.getMonth(0), DataHelper.getYear(0), DataHelper.getEngHolder(), DataHelper.getCVC());
         ArrayList<String> beforeClick = tourPage.getFrom();
-        tourPage.clickPayButton();
+        homePage.clickPayButton();
         ArrayList<String> afterClick = tourPage.getFrom();
         Assertions.assertAll(
                 () -> Assertions.assertEquals(beforeClick.get(0), afterClick.get(0)),
