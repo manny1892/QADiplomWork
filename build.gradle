@@ -43,5 +43,7 @@ test {
     useJUnitPlatform()
     systemProperty 'selenide.headless', System.getProperty('selenide.headless')
     systemProperty 'dbUrl', System.getProperty('dbUrl')
+    systemProperty 'dbUser', System.getProperty('dbUser')
+    systemProperty 'dbPass', System.getProperty('dbPass')
 
 }

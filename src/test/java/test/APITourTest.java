@@ -1,7 +1,8 @@
 package test;
 
 import com.codeborne.selenide.logevents.SelenideLogger;
-import data.APIDBHelper;
+import data.APIHelper;
+import data.DBHelper;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.*;
 import pages.TourPage;
@@ -11,7 +12,7 @@ public class APITourTest {
 
     @AfterEach
     void clearDB() {
-        APIDBHelper.clearDB();
+        DBHelper.clearDB();
     }
 
     @BeforeAll
@@ -28,7 +29,7 @@ public class APITourTest {
     @DisplayName("87) HappyPath PayCard Status Approved API Test Response 200")
     void shouldResponseTwoHundredByPayPayCardApproved() {
         Assertions.assertAll(
-                APIDBHelper::buyApprovedPayCardAPI,
+                APIHelper::buyApprovedPayCardAPI,
                 () -> tourPage.payApprovedStatusAssertion(),
                 () -> tourPage.payAcceptCountAssertion(),
                 () -> tourPage.orderAcceptCountAssertion()
@@ -39,7 +40,7 @@ public class APITourTest {
     @DisplayName("88) HappyPath PayCard Status Declined API Test Response 200")
     void shouldResponseTwoHundredByPayPayCardDeclined() {
         Assertions.assertAll(
-                APIDBHelper::buyDeclinedPayCardAPI,
+                APIHelper::buyDeclinedPayCardAPI,
                 () -> tourPage.payDeclinedStatusAssertion(),
                 () -> tourPage.payAcceptCountAssertion(),
                 () -> tourPage.orderAcceptCountAssertion()
@@ -50,7 +51,7 @@ public class APITourTest {
     @DisplayName("89) HappyPath CreditCard Status Approved API Test Response 200")
     void shouldResponseTwoHundredByPayCreditCardApproved() {
         Assertions.assertAll(
-                APIDBHelper::buyApprovedCreditCardAPI,
+                APIHelper::buyApprovedCreditCardAPI,
                 () -> tourPage.creditApprovedStatusAssertion(),
                 () -> tourPage.creditAcceptCountAssertion(),
                 () -> tourPage.orderAcceptCountAssertion()
@@ -61,7 +62,7 @@ public class APITourTest {
     @DisplayName("90) HappyPath CreditCard Status Declined API Test Response 200")
     void shouldResponseTwoHundredByPayCreditCardDeclined() {
         Assertions.assertAll(
-                APIDBHelper::buyDeclinedCreditCardAPI,
+                APIHelper::buyDeclinedCreditCardAPI,
                 () -> tourPage.creditDeclinedStatusAssertion(),
                 () -> tourPage.creditAcceptCountAssertion(),
                 () -> tourPage.orderAcceptCountAssertion()
@@ -72,7 +73,7 @@ public class APITourTest {
     @DisplayName("91) Empty PayCard API Test Response 400")
     void shouldResponseFourHundredByPayEmptyPayCard() {
         Assertions.assertAll(
-                APIDBHelper::buyEmptyPayCardAPI,
+                APIHelper::buyEmptyPayCardAPI,
                 () -> tourPage.payDenialCountAssertion(),
                 () -> tourPage.orderDenialCountAssertion()
         );
@@ -82,7 +83,7 @@ public class APITourTest {
     @DisplayName("92) Approved PayCard And Random Invalid Other Field API Test Response 400")
     void shouldResponseFourHundredByApprovedPayCardAndRandomInvalidOtherField() {
         Assertions.assertAll(
-                APIDBHelper::buyApprovedPayCardAndRandomInvalidOtherField,
+                APIHelper::buyApprovedPayCardAndRandomInvalidOtherField,
                 () -> tourPage.payDenialCountAssertion(),
                 () -> tourPage.orderDenialCountAssertion()
         );
@@ -92,7 +93,7 @@ public class APITourTest {
     @DisplayName("93) Approved PayCard And Empty Other Field API Test Response 400")
     void shouldResponseFourHundredByApprovedPayCardAndEmptyOtherField() {
         Assertions.assertAll(
-                APIDBHelper::buyApprovedPayCardAndEmptyOtherField,
+                APIHelper::buyApprovedPayCardAndEmptyOtherField,
                 () -> tourPage.payDenialCountAssertion(),
                 () -> tourPage.orderDenialCountAssertion()
         );
@@ -102,7 +103,7 @@ public class APITourTest {
     @DisplayName("94) Random PayCard Number And Valid Other Field API Test Response 400")
     void shouldResponseFourHundredByRandomCardNumberAndValidOtherField() {
         Assertions.assertAll(
-                APIDBHelper::buyRandomCardNumberAndValidOtherField,
+                APIHelper::buyRandomCardNumberAndValidOtherField,
                 () -> tourPage.payDenialCountAssertion(),
                 () -> tourPage.orderDenialCountAssertion()
         );
@@ -112,7 +113,7 @@ public class APITourTest {
     @DisplayName("95) Empty CreditCard API Test Response 400")
     void shouldResponseFourHundredByPayEmptyCreditCard() {
         Assertions.assertAll(
-                APIDBHelper::buyEmptyCreditCardAPI,
+                APIHelper::buyEmptyCreditCardAPI,
                 () -> tourPage.creditDenialCountAssertion(),
                 () -> tourPage.orderDenialCountAssertion()
         );
@@ -122,7 +123,7 @@ public class APITourTest {
     @DisplayName("96) Approved CreditCard And Random Invalid Other Field API Test Response 400")
     void shouldResponseFourHundredByApprovedCreditCardAndRandomInvalidOtherField() {
         Assertions.assertAll(
-                APIDBHelper::buyApprovedCreditCardAndRandomInvalidOtherField,
+                APIHelper::buyApprovedCreditCardAndRandomInvalidOtherField,
                 () -> tourPage.creditDenialCountAssertion(),
                 () -> tourPage.orderDenialCountAssertion()
         );
@@ -132,7 +133,7 @@ public class APITourTest {
     @DisplayName("97) Approved CreditCard And Empty Other Field API Test Response 400")
     void shouldResponseFourHundredByApprovedCreditCardAndEmptyOtherField() {
         Assertions.assertAll(
-                APIDBHelper::buyApprovedCreditCardAndEmptyOtherField,
+                APIHelper::buyApprovedCreditCardAndEmptyOtherField,
                 () -> tourPage.creditDenialCountAssertion(),
                 () -> tourPage.orderDenialCountAssertion()
         );
@@ -142,7 +143,7 @@ public class APITourTest {
     @DisplayName("98) Random CreditCard Number And Valid Other Field API Test Response 400")
     void shouldResponseFourHundredByRandomCreditCardNumberAndValidOtherField() {
         Assertions.assertAll(
-                APIDBHelper::buyRandomCreditCardNumberAndValidOtherField,
+                APIHelper::buyRandomCreditCardNumberAndValidOtherField,
                 () -> tourPage.creditDenialCountAssertion(),
                 () -> tourPage.orderDenialCountAssertion()
         );

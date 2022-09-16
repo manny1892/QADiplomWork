@@ -2,7 +2,7 @@ package pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import data.APIDBHelper;
+import data.DBHelper;
 import org.junit.jupiter.api.Assertions;
 
 import java.time.Duration;
@@ -133,61 +133,61 @@ public class TourPage {
     public void payApprovedStatusAssertion(){
 
         String statusExpected = "APPROVED";
-        String statusActual = APIDBHelper.getPaymentStatusDB();
+        String statusActual = DBHelper.getPaymentStatusDB();
         Assertions.assertEquals(statusExpected,statusActual);
     }
 
     public void payDeclinedStatusAssertion(){
         String statusExpected = "DECLINED";
-        String statusActual = APIDBHelper.getPaymentStatusDB();
+        String statusActual = DBHelper.getPaymentStatusDB();
         Assertions.assertEquals(statusExpected,statusActual);
     }
 
     public void payAcceptCountAssertion(){
         long countExpected = 1;
-        long countActual = APIDBHelper.getPaymentCount();
+        long countActual = DBHelper.getPaymentCount();
         Assertions.assertEquals(countExpected,countActual);
     }
 
     public void payDenialCountAssertion(){
         long countExpected = 0;
-        long countActual = APIDBHelper.getPaymentCount();
+        long countActual = DBHelper.getPaymentCount();
         Assertions.assertEquals(countExpected,countActual);
     }
 
     public void creditApprovedStatusAssertion(){
         String statusExpected = "APPROVED";
-        String statusActual = APIDBHelper.getCreditStatusDB();
+        String statusActual = DBHelper.getCreditStatusDB();
         Assertions.assertEquals(statusExpected,statusActual);
     }
 
     public void creditDeclinedStatusAssertion(){
         String statusExpected = "DECLINED";
-        String statusActual = APIDBHelper.getCreditStatusDB();
+        String statusActual = DBHelper.getCreditStatusDB();
         Assertions.assertEquals(statusExpected,statusActual);
     }
 
     public void creditAcceptCountAssertion(){
         long countExpected = 1;
-        long countActual = APIDBHelper.getCreditCount();
+        long countActual = DBHelper.getCreditCount();
         Assertions.assertEquals(countExpected,countActual);
     }
 
     public void creditDenialCountAssertion(){
         long countExpected = 0;
-        long countActual = APIDBHelper.getCreditCount();
+        long countActual = DBHelper.getCreditCount();
         Assertions.assertEquals(countExpected,countActual);
     }
 
     public void orderAcceptCountAssertion(){
         long countExpected = 1;
-        long countActual = APIDBHelper.getOrderCount();
+        long countActual = DBHelper.getOrderCount();
         Assertions.assertEquals(countExpected,countActual);
     }
 
     public void orderDenialCountAssertion(){
         long countExpected = 0;
-        long countActual = APIDBHelper.getOrderCount();
+        long countActual = DBHelper.getOrderCount();
         Assertions.assertEquals(countExpected,countActual);
     }
 
